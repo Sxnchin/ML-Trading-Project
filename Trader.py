@@ -20,7 +20,7 @@ def get_stock_data(ticker, start_date, end_date):
     print("Daily returns calculated.")
     return data
 
-data = get_stock_data("AAPL", "2015-01-01", "2023-01-01")
+data = get_stock_data("NVDA", "2023-01-01", "2025-01-01")
 
 if data is not None:
     # Step 2: Feature Engineering
@@ -35,10 +35,10 @@ if data is not None:
         print("Technical indicators added.")
         return data
 
-    data = add_technical_indicators(data, "AAPL")
+    data = add_technical_indicators(data, "NVDA")
 
     print("Creating target labels...")
-    data['Target'] = np.where(data[('Close', "AAPL")].shift(-1) > data[('Close', "AAPL")], 1, 0)
+    data['Target'] = np.where(data[('Close', "NVDA")].shift(-1) > data[('Close', "NVDA")], 1, 0)
     print("Target labels created.")
 
     features = ['SMA_10', 'SMA_50', 'RSI', 'MACD', 'Signal_Line']
@@ -88,7 +88,7 @@ if data is not None:
 
     print("Comparing predictions vs actual trends...")
     plt.figure(figsize=(14, 7))
-    actual_prices = data[('Close', 'AAPL')][-len(y_test):]
+    actual_prices = data[('Close', 'NVDA')][-len(y_test):]
     predicted_uptrend = pd.Series(y_pred, index=actual_prices.index)
 
     plt.plot(actual_prices, label='Actual Prices', alpha=0.8)
