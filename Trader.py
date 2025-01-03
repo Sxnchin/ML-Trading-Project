@@ -92,7 +92,7 @@ if data is not None:
     predicted_uptrend = pd.Series(y_pred, index=actual_prices.index)
 
     plt.plot(actual_prices, label='Actual Prices', alpha=0.8)
-    plt.plot(actual_prices.index, data[('SMA_10', 'AAPL')][-len(y_test):].values, label='SMA_10', alpha=0.6)
+    plt.plot(actual_prices.index, data['SMA_10'][-len(y_test):].values, label='SMA_10', alpha=0.6)
     plt.scatter(predicted_uptrend[predicted_uptrend == 1].index, actual_prices[predicted_uptrend == 1], 
                 label='Predicted Uptrend', color='green', alpha=0.7)
     plt.legend()
