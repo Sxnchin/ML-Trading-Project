@@ -6,12 +6,17 @@ from sklearn.metrics import classification_report, accuracy_score, roc_auc_score
 import yfinance as yf
 import matplotlib.pyplot as plt
 
+
+
+# Author : Sanchin Noble - 2025
+# Next Step : develop front end 
+
 # Step 1: Data Collection
 def get_stock_data(ticker, start_date, end_date):
     print(f"Fetching stock data for {ticker} from {start_date} to {end_date}...")
     data = yf.download(ticker, start=start_date, end=end_date)
     print("Data fetched successfully.")
-    print("Columns in the data:", data.columns)  # Print the columns to debug
+    print("Columns in the data:", data.columns)  # Print the columns for debugging purposes
     if ('Close', ticker) in data.columns:
         data['Return'] = data[('Close', ticker)].pct_change()
     else:
